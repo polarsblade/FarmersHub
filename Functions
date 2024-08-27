@@ -1,0 +1,107 @@
+local Functions = {}
+
+-- General Functions --
+
+-- Get Game Version
+-- Return : Number
+function Functions.GetGameVersion()
+    local PlaceVersion = game:GetService("MarketplaceService"):GetProductInfo(17017769292).Updated
+    return PlaceVersion
+end
+
+-- Game Functions --
+
+-- Click Button
+-- GuiObject : Button / ImageButton
+-- IsSingular : Bool
+function Functions.ClickButton(GuiObject, IsSingular)
+    if IsSingular then
+        local CenterPosition = GuiObject.AbsolutePosition
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y + Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, true, nil, 0)
+    else
+        local CenterPosition = GuiObject.AbsolutePosition
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y + Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, true, nil, 0)
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y + Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, false, nil, 0)
+    end
+end
+
+-- Click Position
+-- Position : Vector2
+-- IsSingular : Bool
+function Functions.ClickPosition(Position, IsSingular)
+    if IsSingular then
+        local CenterPosition = Position
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, true, nil, 0)
+    else
+        local CenterPosition = Position
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, true, nil, 0)
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, false, nil, 0)
+    end
+end
+
+-- Lobby Functions --
+
+-- Get World
+-- WorldName : String
+-- Return (True) : ImageButton
+-- Return (False) : Nil
+function Functions.GetWorld(WorldName)
+    local WorldFrame = game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.WorldSelectFrame.ScrollingFrame
+    local WorldName = string.lower(WorldName)
+
+    for Key, World in ipairs(WorldFrame:GetChildren()) do
+        if World:IsA("Frame") and World:FindFirstChild("ImageButton") then
+            if string.lower(World.ImageButton.WorldNameLabel.Text) == WorldName then
+                return World:FindFirstChild("ImageButton")
+            end
+        end
+    end
+
+    return nil
+end
+
+-- Get Chapter
+-- Chapter : Number
+-- Return (True) : ImageButton
+-- Return (False) : Nil 
+function Functions.GetChapter(Chapter)
+    local ChapterFrame = game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Frame.Main.LeftSide.ScrollingFrame
+    local ChapterName = string.lower("Chapter "..tostring(Chapter))
+
+    for Key, Chapter in ipairs(ChapterFrame:GetChildren()) do
+        if Chapter:IsA("Frame") and Chapter:FindFirstChild("ImageButton") then
+            if ChapterName == string.lower(Chapter.ChapterButton.TextLabel.Text) then
+                return Chapter.ChapterButton
+            end
+        end
+    end
+
+    return nil
+end
+
+-- Get Match Buttons
+-- Return : Table ( Table["ConfirmButton"] : ImageButton | Table["LeaveButton"] : ImageButton )
+function Functions.GetMatchButtons()
+    local Buttons = {}
+    for Key, Button in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Frame.OptionsHolder:GetChildren()) do
+        if Button:IsA("Frame") then
+            if Button:FindFirstChild("LeaveButton") then
+                Buttons["LeaveButton"] = Button:FindFirstChild("LeaveButton")
+            elseif Buttons:FindFirstChild("ConfirmButton") then
+                Buttons["ConfirmButton"] = Button:FindFirstChild("ConfirmButton")
+            end
+        end
+    end
+
+    return Buttons
+end
+
+-- Start Match
+function Functions.StartMatch()
+    repeat
+        task.wait(0.5)
+        Functions.ClickButton(game:GetService("Players").LocalPlayer.PlayerGui.HUD.MatchDisplayHolder.MatchDisplayFrame.OptionsHolder.StartButtonHolder.ConfirmButton, false)
+    until game:GetService("Players").LocalPlayer.PlayerGui.TravellingGui.Enabled == true
+end
+
+return Functions
