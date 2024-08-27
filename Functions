@@ -91,11 +91,11 @@ end
 -- Return (False) : Nil 
 function Functions.GetChapter(Chapter)
     local ChapterFrame = game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Frame.Main.LeftSide.ScrollingFrame
-    local ChapterName = string.lower("Chapter "..tostring(Chapter))
+    local ChapterName = "Chapter "..tostring(Chapter)
 
     for Key, Chapter in ipairs(ChapterFrame:GetChildren()) do
         if Chapter:IsA("Frame") and Chapter:FindFirstChild("ImageButton") then
-            if ChapterName == string.lower(Chapter.ChapterButton.TextLabel.Text) then
+            if ChapterName == Chapter.ChapterButton.TextLabel.Text then
                 return Chapter.ChapterButton
             end
         end
