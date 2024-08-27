@@ -41,6 +41,31 @@ end
 
 -- Lobby Functions --
 
+-- Get Pod
+-- Return (True) : Model
+-- Return (False) : Yields Till True
+function Functions.GetPod()
+    local EmptyPod = nil
+    repeat
+        task.wait(0.5)
+
+        for Key, Pod in ipairs(workspace.SubStuff_DONT_DELETE.StoryPods:GetChildren()) do
+            local PlayersInside = false
+            for Key, Player in ipairs(game:GetService("Players"):GetPlayers()) do
+                if Player ~= game:GetService("Players").LocalPlayer and (Player.Character.HumanoidRootPart.Position - Pod.Inside.Position).Magnitude <= 20 then
+                    PlayersInside = true
+                end
+            end
+
+            if not PlayersInside then
+                EmptyPod = Pod 
+            end
+        end
+    until EmptyPod ~= nil
+
+    return EmptyPod
+end
+
 -- Get World
 -- WorldName : String
 -- Return (True) : ImageButton
