@@ -118,6 +118,13 @@ end
 
 -- Start Match
 function Functions.StartMatch()
+    local MatchButtons = Functions.GetMatchButtons()
+    repeat
+        task.wait()
+
+        Functions.ClickButton(MatchButtons["ConfirmButton"], false)
+    until game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Visible == false
+
     repeat
         task.wait(0.5)
         Functions.ClickButton(game:GetService("Players").LocalPlayer.PlayerGui.HUD.MatchDisplayHolder.MatchDisplayFrame.OptionsHolder.StartButtonHolder.ConfirmButton, false)
