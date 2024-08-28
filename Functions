@@ -107,7 +107,7 @@ function Functions.GetMatchButtons()
         if Button:IsA("Frame") then
             if Button:FindFirstChild("LeaveButton") then
                 Buttons["LeaveButton"] = Button:FindFirstChild("LeaveButton")
-            elseif Buttons:FindFirstChild("ConfirmButton") then
+            elseif Button:FindFirstChild("ConfirmButton") then
                 Buttons["ConfirmButton"] = Button:FindFirstChild("ConfirmButton")
             end
         end
