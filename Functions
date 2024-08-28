@@ -131,4 +131,67 @@ function Functions.StartMatch()
     until game:GetService("Players").LocalPlayer.PlayerGui.TravellingGui.Enabled == true
 end
 
+-- Recording / Playback --
+
+-- Get Selected Unit
+-- Return (Exists) : Model
+-- Return (Doesn't Exist) : Nil
+function Functions.GetSelectedUnit()
+    for Key, Script in ipairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetChildren()) do
+        if Script:FindFirstChild("UnitSelectionHandler") then
+            return Script:FindFirstChild("UnitSelectionHandler"):FindFirstChild("SelectedUnitHighlight").Adornee
+        end
+    end
+
+    return nil
+end
+
+-- Get Unit Button
+-- UnitName : String
+-- Return (Exists) : ImageButton
+-- Return (Doesn't Exist) : Nil
+function Functions.GetUnitButton(UnitName)
+    for Key, Frame in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.HUD.Toolbar.UnitBar.UnitHolder:GetChildren()) do
+        if Frame:IsA("Frame") and Frame.Name == "UnitGridPrefab" then
+            if Frame:FindFirstChild("Button").ViewportFrame.WorldModel:FindFirstChild(UnitName) then
+                return Frame:FindFirstChild("Button")
+            end
+        end
+    end
+
+    return nil
+end
+
+-- Get Unit Price
+-- UnitName : String
+-- Return : Number
+function Functions.GetUnitPrice(UnitName)
+    for Key, Frame in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.HUD.Toolbar.UnitBar.UnitHolder:GetChildren()) do
+        if Frame:IsA("Frame") and Frame.Name == "UnitGridPrefab" then
+            if Frame:FindFirstChild("Button").ViewportFrame.WorldModel:FindFirstChild(UnitName) then
+                return tonumber(Frame:FindFirstChild("Button"):FindFirstChild("TowerCostFrame"):FindFirstChild("CostLabel").Text)
+            end
+        end
+    end
+
+    return nil
+end
+
+-- Get Dictionary Count
+-- Dictionary : Table
+-- Return : Number
+function Functions.GetDictionaryCount(Dictionary)
+    if type(Dictionary) == "table" then
+        local Count = 0
+        for Key, Value in pairs(Dictionary) do
+            Count = Count + 1
+        end
+
+        return Count
+    else
+        warn("Dictionary Was Not Type Table")
+        return nil
+    end
+end
+
 return Functions
