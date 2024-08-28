@@ -90,14 +90,9 @@ end
 -- Return (True) : ImageButton
 -- Return (False) : Nil 
 function Functions.GetChapter(Chapter)
-    local ChapterContainer = game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Frame.Main.LeftSide.ScrollingFrame
-    local ChapterName = "Chapter "..tostring(Chapter)
-
-    for Key, ChapterFrame in ipairs(ChapterContainer:GetChildren()) do
-        if ChapterFrame:IsA("Frame") and ChapterFrame:FindFirstChild("ImageButton") then
-            if ChapterName == ChapterFrame.ChapterButton.TextLabel.Text then
-                return ChapterFrame.ChapterButton
-            end
+    for Key, ChapterFrame in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.PAGES.MatchPage.Frame.Main.LeftSide.ScrollingFrame:GetChildren()) do
+        if ChapterFrame:IsA("Frame") and ChapterFrame:FindFirstChild("ChapterButton") and ChapterFrame.ChapterButton.TextLabel.Text == "Chapter "..tostring(Chapter) then
+            return ChapterFrame:FindFirstChild("ChapterButton")
         end
     end
 
