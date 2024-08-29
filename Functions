@@ -175,7 +175,8 @@ function Functions.GetUnitPrice(UnitName)
     for Key, Frame in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.HUD.Toolbar.UnitBar.UnitHolder:GetChildren()) do
         if Frame:IsA("Frame") and Frame.Name == "UnitGridPrefab" then
             if Frame:FindFirstChild("Button").ViewportFrame.WorldModel:FindFirstChild(UnitName) then
-                return tonumber(string.gsub(Frame:FindFirstChild("Button"):FindFirstChild("TowerCostFrame"):FindFirstChild("CostLabel").Text, "%D", ""))
+                local Value = string.gsub(Frame:FindFirstChild("Button"):FindFirstChild("TowerCostFrame"):FindFirstChild("CostLabel").Text, "%D", "")
+                return tonumber(Value)
             end
         end
     end
