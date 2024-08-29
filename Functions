@@ -39,6 +39,12 @@ function Functions.ClickPosition(Position, IsSingular)
     end
 end
 
+-- Move Mouse
+-- Position : Vector2
+function Functions.MoveMouse(Position)
+    game:GetService("VirtualInputManager"):SendMouseMoveEvent(Position.X, Position.Y, nil)
+end
+
 -- Lobby Functions --
 
 -- Get Pod
