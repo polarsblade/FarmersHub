@@ -183,6 +183,19 @@ function Functions.GetUnitPrice(UnitName)
     return nil
 end
 
+-- Get Placing Unit
+-- Return (Exists) : Model
+-- Return (Doesn't Exist) : Nil
+function Functions.GetPlacingUnit()
+    for Key, Model in ipairs(game:GetService("Workspace"):GetChildren()) do
+        if Model:IsA("Model") and Model:FindFirstChild("Outfit") and Model:FindFirstChild("Humanoid") then
+            return Model
+        end
+    end
+
+    return nil
+end
+
 -- Get Dictionary Count
 -- Dictionary : Table
 -- Return : Number
