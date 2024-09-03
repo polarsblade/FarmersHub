@@ -14,7 +14,7 @@ end
 -- Tap Position
 -- Position
 function Functions.TapPosition(Position)
-    game:GetService("VirtualInputManager"):SendTouchEvent(nil, game, 0, Position.X, Position.Y)
+    game:GetService("VirtualInputManager"):SendTouchEvent(game, 0, Position.X, Position.Y)
 end
 
 -- Click Button
