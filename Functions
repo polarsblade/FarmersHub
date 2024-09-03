@@ -19,12 +19,30 @@ function Functions.ClickButton(GuiObject, IsSingular)
         local CenterPosition = GuiObject.AbsolutePosition + Vector2.new(10 + math.random(), 60 + math.random())
         game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, true, nil, 0)
 
+        local ScreenGui = Instance.new("ScreenGui")
+        ScreenGui.Parent = game.CoreGui
+
+        local Frame = Instance.new("Frame")
+        Frame.Parent = ScreenGui
+        Frame.AnchorPoint = Vector2.new(0, 0)
+        Frame.Position = UDim2.new(0, CenterPosition.X, 0, CenterPosition.Y)
+        game:GetService("Debris"):AddItem(ScreenGui, 1)
+
         --game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y - Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, true, nil, 0)
     else
         local CenterPosition = GuiObject.AbsolutePosition + Vector2.new(10 + math.random(), 60 + math.random())
         game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, true, nil, 0)
         game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X, CenterPosition.Y, 0, false, nil, 0)
 
+        local ScreenGui = Instance.new("ScreenGui")
+        ScreenGui.Parent = game.CoreGui
+
+        local Frame = Instance.new("Frame")
+        Frame.Parent = ScreenGui
+        Frame.AnchorPoint = Vector2.new(0, 0)
+        Frame.Position = UDim2.new(0, CenterPosition.X, 0, CenterPosition.Y)
+        game:GetService("Debris"):AddItem(ScreenGui, 1)
+        
         --game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y - Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, true, nil, 0)
         --game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y - Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, false, nil, 0)
     end
