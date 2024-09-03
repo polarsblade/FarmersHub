@@ -26,7 +26,7 @@ function Functions.ClickButton(GuiObject, IsSingular)
         Frame.Parent = ScreenGui
         Frame.AnchorPoint = Vector2.new(0.5, 0.5)
         Frame.Position = UDim2.new(0, CenterPosition.X, 0, CenterPosition.Y)
-        Frame.Size = UDim2.new(0, 25, 0, 25)
+        Frame.Size = UDim2.new(0, 5, 0, 5)
         game:GetService("Debris"):AddItem(ScreenGui, 1)
 
         --game:GetService("VirtualInputManager"):SendMouseButtonEvent(CenterPosition.X + Random.new():NextNumber(0, GuiObject.AbsoluteSize.X), CenterPosition.Y - Random.new():NextNumber(0, GuiObject.AbsoluteSize.Y), 0, true, nil, 0)
@@ -41,7 +41,7 @@ function Functions.ClickButton(GuiObject, IsSingular)
         local Frame = Instance.new("Frame")
         Frame.Parent = ScreenGui
         Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-        Frame.Size = UDim2.new(0, 25, 0, 25)
+        Frame.Size = UDim2.new(0, 5, 0, 5)
         Frame.Position = UDim2.new(0, CenterPosition.X, 0, CenterPosition.Y)
         game:GetService("Debris"):AddItem(ScreenGui, 1)
 
